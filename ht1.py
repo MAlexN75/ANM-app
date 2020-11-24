@@ -4,6 +4,13 @@ from flask import *
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    user = "Алексей"
+    return render_template('index.html', title='Домашняя страница', 
+                           username=user)
+
+
 @app.route('/first_page')
 
 def first():
@@ -50,6 +57,12 @@ def get_number(number):
                     <h1>Запрошено число {number}!</h1>
                   </body>
                 </html>'''
+
+@app.route('/news')
+def news():
+    with open("templates/news.json", "rt", encoding="utf8") as f:
+        news_list = json.loads(f.read())
+    return render_template('news.html', news=news_list)
 
 @app.route('/form_sample', methods=['POST', 'GET'])
 def form_sample():

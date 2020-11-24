@@ -4,10 +4,6 @@ from flask import *
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return "Привет от приложения Flask"
-
 @app.route('/first_page')
 
 def first():
